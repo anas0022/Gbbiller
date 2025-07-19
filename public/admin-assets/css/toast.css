@@ -1,0 +1,365 @@
+.dataTables_wrapper .dataTables_paginate {
+  display: flex;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.5em 1em;
+  margin: 0 0.2em;
+  border-radius: 4px;
+  background-color: gray;
+  color: white;
+  border: none;
+  position: relative;
+  left: -40%;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}
+
+.dt {
+  background-color: black;
+}
+
+/* Style for DataTable buttons */
+.dt-button {
+  width: auto;
+  height: auto;
+  background-color: black;
+  /* Black background */
+  color: white;
+  /* White text */
+  border: none;
+  /* Remove border */
+}
+
+.dt-button:hover {
+  background-color: #444;
+  /* Darker gray on hover */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+}
+
+.dt-button.buttons-csv,
+.dt-button.buttons-print,
+.dt-button.buttons-pdf,
+.dt-button.buttons-excel {
+  background-color: black;
+  color: white;
+}
+
+.dt-button.buttons-csv:hover,
+.dt-button.buttons-print:hover,
+.dt-button.buttons-pdf:hover,
+.dt-button.buttons-excel:hover {
+  background-color: black;
+}
+
+/* Style for the button container and filter */
+.button-filter-container {
+  display: flex;
+  justify-content: space-between;
+  /* Space between left and right sections */
+
+  padding: 10px;
+  /* Padding around the buttons */
+  margin-bottom: 15px;
+  /* Space below the buttons */
+  border-radius: 10px;
+  width: 100%;
+  /* Full width */
+}
+
+@media(max-width:600px) {
+  .button-filter-container {
+      flex-direction: column;
+      width: 100%;
+  }
+}
+
+.row-count-filter {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  /* Space between dropdown and buttons */
+}
+
+.row-count-filter label {
+  margin-right: 5px;
+  /* Space between label and select */
+
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  /* Pushes the search to the right */
+}
+
+.search-container input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  /* Border for search input */
+  border-radius: 4px;
+  /* Rounded corners */
+  margin-left: 5px;
+  /* Space between label and input */
+}
+
+.search-container label {
+
+  margin-right: 5px;
+  /* Space between label and input */
+}
+
+.butt {
+  width: 30%;
+}
+.paid{
+  background-color: rgb(13, 212, 13);
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Not-paid{
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  /* Align buttons to the start */
+  flex-grow: 1;
+  /* Allow this area to take available space */
+  gap: 4px;
+  /* Space between buttons */
+  background-color: black;
+  position: relative;
+  border-radius: 10px;
+  /* Change this value to your desired width */
+}
+.toast {
+    position: absolute;
+   top: 10%;
+   left: 50%;
+   z-index: 100;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: none;
+   transform: translate(-50%,-10%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  }
+  
+  .toast.active {
+display: block;
+  }
+  
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toast-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #10f031;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+  .toast.error {
+    background-color: #ffcccc; /* Light red background for error */
+}
+
+.toast-content .error-icon {
+    background-color: #ff0000; /* Red background for error icon */
+}
+
+.toast .progress.error-progress:before {
+    background-color: #ff0000; /* Red progress bar for error */
+}
+
+  
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+  
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+  }
+  
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .toast .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+  .toast .close:hover {
+    opacity: 1;
+  }
+  
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  
+  }
+  
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #10f031;
+  }
+  
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+  
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }
+  
+.form_update{
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+   background-color: white;
+      position: fixed;
+     
+
+      justify-content: center;
+      align-items: center;
+        flex-direction: column;
+left: 50%;
+        padding: 20px;
+        width: auto;
+    box-shadow: 0px 0px 1px 0px gray;
+        border-radius: 10px;
+        z-index: 40000000000000;
+        
+  }
+.form_update form{
+    flex-direction: column;
+    gap: 20px   ;
+}
+.form_update form i{
+    font-size: 60px;
+    margin-bottom: 2px;
+    color: orange;
+}
+.buttons {
+    display: flex;
+    width: 100%;
+    gap: 10px ;
+
+    justify-content: center;
+    align-items: center;
+
+}
+.status-cell.active-status{
+  background-color: blue;
+  color: white;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.status-cell.inactive-status{
+  background-color: red;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons button:nth-child(2){
+  width: 50%;
+  background-color: blue;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  font-size: 20px;
+
+}
+button{
+  border: none;
+}
+.buttons button:nth-child(1){
+  width: 50%;
+  background-color: rgb(214, 206, 206);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+
+  padding: 5px;
+ 
+}
+.buttons a{
+    width: 100%;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+#update{
+     color: white;
+    background-color: #10f031;
+    width: 40px;
+    padding: 0px;
+    height: 40px;
+    border-radius: 10px;
+}
+#delete{
+    color: white;
+    background-color: red;
+    width: 40px;
+    padding: 0px;
+    height: 40px;
+    border-radius: 10px;
+}
