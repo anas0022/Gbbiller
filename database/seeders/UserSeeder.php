@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'user_type' => 1,
                 'store_id' => 0,
                 'mobile_code' => 91,
-                'plan' => 1,
+                'plan' => 0,
                 'created_by' => 0,
             ]);
         }

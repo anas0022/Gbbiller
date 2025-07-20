@@ -39,8 +39,24 @@ window.addEventListener('load', function() {
                 },
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(async response => {
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    // Not JSON, show raw text for debugging
+                    const text = await response.text();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Non-JSON response: ' + text,
+                        confirmButtonColor: '#d33'
+                    });
+                    button.disabled = false;
+                    buttonText.style.display = 'block';
+                    spinner.style.display = 'none';
+                    return;
+                }
                 if (data.success) {
                     window.location.href = data.redirect || '/dashboard';
                     button.disabled = false;

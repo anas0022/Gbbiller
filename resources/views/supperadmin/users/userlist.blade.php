@@ -165,7 +165,7 @@
                                             <th class="text-center"><i class="fas fa-cog"></i></th>
                                         </tr>
                                     </thead>
-                                    <tbody id="methodTableBody"></tbody>
+                                    <tbody id="userTableBody"></tbody>
                                 </table>
                             </div>
                         </div>

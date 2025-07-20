@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
     public function useradd(){
@@ -25,7 +26,7 @@ class UserController extends Controller
     }
 
     public function userlistget(){
-        $userlist = User::where('role', '!=', 'admin')->get();
+        $userlist = User::where('user_type', '!=',1)->get();
         return response()->json([
             'data' => $userlist
         ]);
@@ -46,7 +47,7 @@ class UserController extends Controller
         'mobile' => 'required|string|max:255|unique:users,mobile',
         'country_code' => 'required|integer',
         'plan' => 'required|integer',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:8|confirmed|unique:users,password',
     ], [
         'name.required' => 'The name field is required.',
         'username.required' => 'The username field is required.',
@@ -59,6 +60,7 @@ class UserController extends Controller
         'email.unique' => 'The email has already been taken.',
         'username.unique' => 'The username has already been taken.',
         'mobile.unique' => 'The mobile has already been taken.',
+        'password.unique' => 'The password has already been taken.',
     ]);
 
     try {
@@ -76,6 +78,8 @@ class UserController extends Controller
             'role' => 'admin',
             'user_type'=>'2',
             'store_id'=>'0',
+            'mobile_code'=>'0',
+            'created_by'=>auth()->user()->id,
         ];
 
         if ($user_id) {
