@@ -23,17 +23,21 @@ $(document).ready(function () {
                 className: 'text-center'
             },
             {
-                data: 'email',
+                data: 'email', // Fixed typo: was 'subscription: "id"'
                 className: 'text-center'
             },
             {
-                data: 'plan',
+                // Plan name from subscription[0].method.method
+                data: null,
+                render: function(data, type, row) {
+                    if (row.subscription && row.subscription[0] && row.subscription[0].method && row.subscription[0].method.method) {
+                        return row.subscription[0].method.method;
+                    }
+                    return '';
+                },
                 className: 'text-center'
             },
-            {
-                data: 'mobile_code',
-                className: 'text-center'
-            },
+           
             {
                 data: 'mobile',
                 className: 'text-center'
@@ -449,8 +453,8 @@ function deleteMethod(id) {
 
             setTimeout(() => {
                 $.ajax({
-                    url: `/supperadmin/method/delete/${id}`,
-                    method: "GET",
+                    url: `/supperadmin/user-delete/${id}`,
+                    method: "delete",
                     dataType: "json",
                     beforeSend: function() {
                         $('body').append(loaderHtml);

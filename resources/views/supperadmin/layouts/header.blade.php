@@ -130,14 +130,14 @@
             pointer-events: none;
         }
     .header{
-        background: #2c3e50;
+ /*        background: #2c3e50; */
 
  
-box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+/* box-shadow: 2px 0 10px rgba(0,0,0,0.1); */
     }
     .nav-header {
   
-  background: #2c3e50;
+/*   background: #2c3e50; */
 
  
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);

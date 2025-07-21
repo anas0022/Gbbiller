@@ -26,12 +26,13 @@ class UserController extends Controller
     }
 
     public function userlistget(){
-        $userlist = User::where('user_type', '!=',1)->get();
+        $userlist = User::where('user_type', '!=',1)
+            ->with(['subscription.method']) // eager load subscriptions and their methods
+            ->get();
+
         return response()->json([
             'data' => $userlist
         ]);
-
-
     }
     
     
@@ -92,6 +93,18 @@ class UserController extends Controller
         return response()->json(['success' => true, 'message' => 'Subscription created successfully']);
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'message' => 'Subscription creation failed: ' . $e->getMessage()], 500);
+    }
+}
+
+
+public function user_delete($id) {
+    try {
+        $user = User::findOrFail($id);
+        $user->delete();
+     
+        return response()->json(['success' => 'user deleted successfully!']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error deleting user'], 500);
     }
 }
 

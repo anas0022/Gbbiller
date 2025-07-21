@@ -10310,6 +10310,7 @@ svg.pulse-svg {
   height: 100%;
   position: absolute;
   top: 0;
+  padding: 5px;
   padding-top: 80px;
   z-index: 3;
   background-color: #fff;
@@ -10349,10 +10350,10 @@ svg.pulse-svg {
       display: flex;
       flex-direction: column; }
       .deznav .metismenu > li a > i {
-        font-size: 1.25rem;
+   /*      font-size: 1.25rem; */
         display: inline-block;
         vertical-align: middle;
-        padding: 0 0.5rem 0 0;
+        padding: 0 0.2rem 0 0;
         position: relative;
         top: 0;
         line-height: 1; }
@@ -10364,8 +10365,8 @@ svg.pulse-svg {
           padding: 0; }
         @media only screen and (max-width: 47.9375rem) {
           .deznav .metismenu > li a > i {
-            font-size: 1.25rem;
-            padding: 0 .75rem 0 0; } }
+           /*  font-size: 1.25rem; */
+            padding: 0 .5rem 0 0; } }
       .deznav .metismenu > li > a {
         font-weight: 500;
         display: inline-block;

@@ -50,4 +50,9 @@ class User extends Authenticatable
         'plan' => 'integer',
         'created_by' => 'integer',
     ];
+
+    public function subscription()
+    {
+        return $this->hasMany(\App\Models\Subscription::class, 'id', 'plan');
+    }
 }

@@ -17,4 +17,10 @@ class Subscription extends Model
     {
         return $this->belongsTo(sub_method::class, 'type', 'id');
     }
+
+       
+    public function sub()
+    {
+        return $this->belongsTo(User::class, 'plan', 'id');
+    }
 }

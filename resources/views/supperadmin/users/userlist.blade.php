@@ -160,8 +160,8 @@
                                             <th class="text-center">Email</th>
                                             <th class="text-center">Plan</th>
                                             <th class="text-center">Mobile</th>
-                                            <th class="text-center">Mobile Code</th>
-                                            <th class="text-center">Role</th>
+                                    
+                                   <!--          <th class="text-center">Role</th> -->
                                             <th class="text-center"><i class="fas fa-cog"></i></th>
                                         </tr>
                                     </thead>

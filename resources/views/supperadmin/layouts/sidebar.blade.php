@@ -41,9 +41,9 @@
 	/* Sidebar Container */
 .deznav {
   
-    background: #2c3e50;
+ /*    background: #2c3e50; */
   
-   
+  /*  padding:5px; */
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
