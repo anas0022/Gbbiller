@@ -7,6 +7,7 @@ use App\Models\CountrySettings;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 
@@ -41,15 +42,18 @@ class UserController extends Controller
 {
 
    
-    $validatedData = $request->validate([
+    $userId = $request->input('id');
+
+    $rules = [
         'name' => 'required|string|max:255',
-        'username' => 'required|string|max:255|unique:users,username',
-        'email' => 'required|email|unique:users,email',
-        'mobile' => 'required|string|max:255|unique:users,mobile',
+        'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($userId)],
+        'email' => ['required', 'email', Rule::unique('users')->ignore($userId)],
+        'mobile' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($userId)],
         'country_code' => 'required|integer',
         'plan' => 'required|integer',
-        'password' => 'required|string|min:8|confirmed|unique:users,password',
-    ], [
+    ];
+
+    $messages = [
         'name.required' => 'The name field is required.',
         'username.required' => 'The username field is required.',
         'email.required' => 'The email field is required.',
@@ -61,12 +65,21 @@ class UserController extends Controller
         'email.unique' => 'The email has already been taken.',
         'username.unique' => 'The username has already been taken.',
         'mobile.unique' => 'The mobile has already been taken.',
-        'password.unique' => 'The password has already been taken.',
-    ]);
+    ];
+
+    if ($userId) {
+        // Update: Password is not required
+        if ($request->filled('password')) {
+            $rules['password'] = 'string|min:8|confirmed';
+        }
+    } else {
+        // Create: Password is required
+        $rules['password'] = 'required|string|min:8|confirmed';
+    }
+
+    $request->validate($rules, $messages);
 
     try {
-        $user_id = $request->input('id');
-
         $data = [
             'name' => $request->input('name'),
             'username' => $request->input('username'),
@@ -74,25 +87,28 @@ class UserController extends Controller
             'mobile' => $request->input('mobile'),
             'country_code' => $request->input('country_code'),
             'plan' => $request->input('plan'),
-            'password' => Hash::make($request->input('password')),
             'subtype' => $request->input('subtype'),
             'role' => 'admin',
-            'user_type'=>'2',
-            'store_id'=>'0',
-            'mobile_code'=>'0',
-            'created_by'=>auth()->user()->id,
+            'user_type' => '2',
+            'store_id' => '0',
+            'mobile_code' => '0',
+            'created_by' => auth()->user()->id,
         ];
 
-        if ($user_id) {
-            $user = User::findOrFail($user_id);
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->input('password'));
+        }
+
+        if ($userId) {
+            $user = User::findOrFail($userId);
             $user->update($data);
         } else {
             User::create($data);
         }
 
-        return response()->json(['success' => true, 'message' => 'Subscription created successfully']);
+        return response()->json(['success' => true, 'message' => 'User data saved successfully']);
     } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => 'Subscription creation failed: ' . $e->getMessage()], 500);
+        return response()->json(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()], 500);
     }
 }
 

@@ -49,7 +49,7 @@ $(document).ready(function () {
                     return `<button class="btn btn-info btn-circle-wrapper" 
                               data-bs-toggle="modal"
                                     data-bs-target="#add-item-model"
-                                onclick="editMethod(${row.id} , '${row.method}', '${row.dis}', '${row.icon}')"
+                                onclick="editMethod(${row.id} , '${row.name}', '${row.username}','${row.email}', '${row.mobile}', ${row.subscription && row.subscription.length > 0 ? row.subscription[0].method.id : 'null'}, '${row.country_code}')"
                                 title="Edit Method">
                                 <span class="btn-circle-inner">
                                     <i class="fa fa-edit"></i>
@@ -454,7 +454,7 @@ function deleteMethod(id) {
             setTimeout(() => {
                 $.ajax({
                     url: `/supperadmin/user-delete/${id}`,
-                    method: "delete",
+                    method: "get",
                     dataType: "json",
                     beforeSend: function() {
                         $('body').append(loaderHtml);
@@ -487,61 +487,19 @@ function deleteMethod(id) {
 
 /* edit method */
 
-async function editMethod(id, method, description, icon) {
-    document.getElementById('methodId').value = id;
-    document.getElementById('methodName').value = method;
-    document.getElementById('methodDescription').value = description;
-    
-    // Update image preview with full URL
-    const imagePreview = document.getElementById('imagePreview');
-    if (icon) {
-        imagePreview.src = `/storage/${icon}`;
-        imagePreview.style.display = 'block';
-    } else {
-        imagePreview.src = '';
-        imagePreview.style.display = 'none';
-    }
-    
-    try {
-        // Fetch the image file
-        const response = await fetch(`/storage/${icon}`);
-        const blob = await response.blob();
-        
-        // Create a File object
-        const fileName = icon.split('/').pop();
-        const file = new File([blob], fileName, { type: blob.type });
-        
-        // Create a DataTransfer object
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        
-        // Set the files property of the input
-        const fileInput = document.getElementById('methodIcon');
-        fileInput.files = dataTransfer.files;
-    } catch (error) {
-        console.error('Error setting file:', error);
-    }
+async function editMethod(id, name, username, email, mobile, planId, countryCode) {
+    $('#id').val(id);
+    $('#name').val(name);
+    $('#username').val(username);
+    $('input[name="email"]').val(email);
+    $('input[name="mobile"]').val(mobile);
+    $('select[name="plan"]').val(planId).selectpicker('refresh');
+    $('select[name="country_code"]').val(countryCode).selectpicker('refresh');
 }
 
 function deselect() {
-    
-    document.getElementById('methodId').value = 0;
-    document.getElementById('methodName').value = '';
-    document.getElementById('methodDescription').value = '';
+    document.getElementById('add-user-form').reset();
+    $('#id').val(0);
 }
 
 // Add this at the beginning of your file
-document.addEventListener('DOMContentLoaded', function() {
-    // Preview for new file uploads
-    const methodIcon = document.getElementById('methodIcon');
-    methodIcon.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('imagePreview').src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-});

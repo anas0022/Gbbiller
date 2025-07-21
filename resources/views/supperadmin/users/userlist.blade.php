@@ -59,13 +59,13 @@
 
                 <div class="col-md-6 mb-4">
                     <label class="form-label fw-bold">Name</label>
-                    <input name="name" type="text" class="form-control">
+                    <input name="name" type="text" class="form-control" id="name">
                     <span class="text-danger error-text name_error"></span>
                 </div>
 
                 <div class="col-md-6 mb-4">
                     <label class="form-label fw-bold">Username</label>
-                    <input name="username" type="text" class="form-control">
+                    <input name="username" type="text" class="form-control" id="username">
                     <span class="text-danger error-text username_error"></span>
                 </div>
 
@@ -141,7 +141,7 @@
                             <div>
 
                                 <a class="card-link float-end btn btn-rounded btn-info btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#add-item-model" onclick="delete()"><span class="btn-icon-start text-info"><i
+                                    data-bs-target="#add-item-model" onclick="deselect()"><span class="btn-icon-start text-info"><i
                                             class="fa fa-plus color-info"></i>
                                     </span>Add User</a>
 

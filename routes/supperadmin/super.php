@@ -31,5 +31,5 @@ Route::group(['prefix' => 'supperadmin', 'middleware' => 'auth'], function () {
     Route::get('/country/delete/{id}', [CountryController::class, 'countrydelete'])->name('country.delete');
     //Route::post('/usereditpost', [UserEditController::class,'usereditpost'])->name('edit.post');
     Route::get('/expiry',[ExpiryController::class,'expired'])->name('expired');
-    Route::delete('/user-delete/{id}',[UserController::class, 'user_delete'])->name('user.delete');
+    Route::get('/user-delete/{id}',[UserController::class, 'user_delete'])->name('user.delete');
 });
