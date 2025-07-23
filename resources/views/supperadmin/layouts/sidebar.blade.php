@@ -1,4 +1,4 @@
-<div class="deznav">
+<div class="deznav bg-dark text-light">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
             <!-- Dashboard -->
