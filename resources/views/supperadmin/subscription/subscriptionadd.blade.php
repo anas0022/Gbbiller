@@ -11,8 +11,8 @@
              {{--    <input type="text" name="sub_id" id="sub_id" value=""> --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">Create Subscription Package</h4>
-                        <small>Fill in the details below to create a new subscription package</small>
+                        Create Subscription Package
+                        
                     </div>
                    
                     <div class="card-body">

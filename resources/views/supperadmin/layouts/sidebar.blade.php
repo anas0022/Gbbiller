@@ -76,11 +76,7 @@
 }
 
 /* Icons */
-.metismenu .ai-icon i {
-    width: 20px;
-    margin-right: 10px;
-    font-size: 18px;
-}
+
 
 /* Submenu */
 
