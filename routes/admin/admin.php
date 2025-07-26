@@ -29,7 +29,7 @@ use App\Http\Controllers\SalePurchaseOrderController;
 use App\Http\Controllers\SalereturnController;
 use App\Http\Controllers\SecondryController;
 use App\Http\Controllers\SerialController;
-use App\Http\Controllers\SettingsController;
+
 use App\Http\Controllers\store\DashController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoresettingController;
@@ -37,14 +37,27 @@ use App\Http\Controllers\SupplierLedgerUploadController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\WarehousrController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\SalesController;
 
+/* Now added controller */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|superadmin']], function () {
 
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\settings\SettingsController;
+
+/* now added end */
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+
+/* Now added items */
 
     Route::get('/dashboard', [HomeController::class, 'home'])->name('home');
+    
+    Route::get('/settings', [SettingsController::class, 'home'])->name('setting.home');
+
+
+    /* THe end  */
+
     Route::get('/pos', [SalesController::class, 'pos'])->name('pos');
     Route::get('/warehouse_add', [WarehousrController::class, 'warehouse'])->name('ware');
     Route::post('/warehouse_post', [WarehousrController::class, 'warepost'])->name('warepost');

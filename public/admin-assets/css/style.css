@@ -9467,7 +9467,7 @@ div, span, ol, ul {
 
 .footer {
   padding-left: 17.1875rem;
-  background-color: #f1f1f1; }
+ }
   .footer .copyright {
     padding: 0.9375rem; }
     .footer .copyright p {
@@ -10704,6 +10704,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li {
   padding: 0; }
   [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     padding: 14px 35px;
     color: #969ba0;
@@ -10735,7 +10738,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       margin-top: 4px; }
   [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a {
     background: var(--rgba-primary-2);
-    color: var(--primary); }
+    color: var(--primary); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
     [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a i {
       color: var(--primary); }
     [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a:before {
@@ -11664,8 +11672,6 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-typography="opensans"] {
   font-family: 'Open Sans', sans-serif; }
 
-[data-typography="poppins"] {
-  font-family: 'poppins', sans-serif; }
 
 [data-typography="roboto"] {
   font-family: 'Roboto', sans-serif; }
